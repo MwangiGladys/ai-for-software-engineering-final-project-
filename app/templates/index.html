@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Health Data Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Latest Health Data</h1>
+
+    <div class="latest">
+        <p><strong>Timestamp:</strong> {{ data['timestamp'] }}</p>
+        <p><strong>Heart Rate:</strong> {{ data['heart_rate'] }}</p>
+        <p><strong>Blood Oxygen:</strong> {{ data['blood_oxygen'] }}</p>
+        <p><strong>Activity Level:</strong> {{ data['activity_level'] }}</p>
+        <p><strong>Anomaly:</strong> {{ data['anomaly'] }}</p>
+    </div>
+
+    <h2>Health Metrics (Last 100 Records)</h2>
+    <canvas id="healthChart" width="600" height="400"></canvas>
+
+    <script>
+        fetch('/chart-data')
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('healthChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.timestamps,
+                        datasets: [
+                            {
+                                label: 'Heart Rate',
+                                data: data.heart_rate,
+                                borderColor: 'red',
+                                backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                                fill: false,
+                                tension: 0.3
+                            },
+                            {
+                                label: 'Blood Oxygen',
+                                data: data.blood_oxygen,
+                                borderColor: 'blue',
+                                backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                                fill: false,
+                                tension: 0.3
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Health Metrics Over Time (Last 100 Records)'
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    autoSkip: true,
+                                    maxTicksLimit: 20
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Timestamp'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Measurement Value'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
