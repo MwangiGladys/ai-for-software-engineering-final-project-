@@ -5,3 +5,4 @@ env/
 *.h5
 data/*.csv
 models/*.pkl
+venv
