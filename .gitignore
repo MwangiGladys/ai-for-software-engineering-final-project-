@@ -1,8 +1,33 @@
+# Byte-compiled / cache files
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+
+# Virtual environments
 env/
+venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Model files, datasets (optional depending on deployment needs)
 *.pkl
 *.h5
-data/*.csv
-models/*.pkl
-venv
+models/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VSCode settings
+.vscode/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# If you need the CSV on deployment, DO NOT ignore it.
+# Comment this out or remove it:
+# data/*.csv
