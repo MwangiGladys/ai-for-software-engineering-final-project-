@@ -28,6 +28,5 @@ Thumbs.db
 # Environment variables
 .env
 
-# Do NOT ignore your CSV data if it's required for deployment.
-# Previously ignored:
+# DO NOT IGNORE CSV FILES
 # data/*.csv
