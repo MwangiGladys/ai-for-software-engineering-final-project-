@@ -10,7 +10,7 @@ venv/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# Model files, datasets (optional depending on deployment needs)
+# Model files
 *.pkl
 *.h5
 models/
@@ -28,6 +28,6 @@ Thumbs.db
 # Environment variables
 .env
 
-# If you need the CSV on deployment, DO NOT ignore it.
-# Comment this out or remove it:
+# Do NOT ignore your CSV data if it's required for deployment.
+# Previously ignored:
 # data/*.csv
